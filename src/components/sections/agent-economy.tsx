@@ -115,7 +115,7 @@ export function AgentEconomy() {
                     <div
                       className={`
                         w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-300
-                        ${isCurrent ? "bg-primary text-white shadow-[0_0_15px_rgba(37,99,235,0.4)]" : isDone ? "bg-emerald-500/20 text-emerald-400" : "bg-white/[0.04] text-white/30"}
+                        ${isCurrent ? "bg-primary text-white shadow-[0_0_15px_rgba(139,92,246,0.4)]" : isDone ? "bg-emerald-500/20 text-emerald-400" : "bg-white/[0.04] text-white/30"}
                       `}
                     >
                       {isDone ? (
@@ -176,12 +176,12 @@ export function AgentEconomy() {
                       background: s.phase === "settle"
                         ? "rgba(16,185,129,0.15)"
                         : s.phase === "pay"
-                          ? "rgba(37,99,235,0.15)"
+                          ? "rgba(139,92,246,0.15)"
                           : "rgba(255,255,255,0.05)",
                       border: s.phase === "settle"
                         ? "1px solid rgba(16,185,129,0.3)"
                         : s.phase === "pay"
-                          ? "1px solid rgba(37,99,235,0.3)"
+                          ? "1px solid rgba(139,92,246,0.3)"
                           : "1px solid rgba(255,255,255,0.1)",
                     }}
                   >
@@ -220,12 +220,12 @@ export function AgentEconomy() {
                       background: s.phase === "settle"
                         ? "rgba(16,185,129,0.1)"
                         : s.phase === "pay"
-                          ? "rgba(37,99,235,0.1)"
+                          ? "rgba(139,92,246,0.1)"
                           : "rgba(255,255,255,0.03)",
                       border: s.phase === "settle"
                         ? "1px solid rgba(16,185,129,0.2)"
                         : s.phase === "pay"
-                          ? "1px solid rgba(37,99,235,0.2)"
+                          ? "1px solid rgba(139,92,246,0.2)"
                           : "1px solid rgba(255,255,255,0.08)",
                     }}
                   >

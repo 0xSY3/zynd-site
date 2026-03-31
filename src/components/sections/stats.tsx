@@ -11,7 +11,7 @@ const METRICS = [
 export function Stats() {
   return (
     <section className="py-24 px-6 bg-background relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(37,99,235,0.06)_0%,transparent_60%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(139,92,246,0.06)_0%,transparent_60%)] pointer-events-none" />
       
       <div className="max-w-7xl mx-auto relative z-10 text-center">
         <motion.div
@@ -54,7 +54,7 @@ export function Stats() {
            className="max-w-3xl mx-auto"
         >
           <div className="relative p-10 rounded-3xl bg-white/[0.02] border border-white/10 backdrop-blur-md">
-            <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shadow-[0_0_20px_rgba(37,99,235,0.5)]">
+            <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shadow-[0_0_20px_rgba(139,92,246,0.5)]">
               <span className="material-symbols-outlined text-[20px]">
                 format_quote
               </span>

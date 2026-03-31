@@ -7,9 +7,9 @@
 @theme inline {
   --animate-marquee: marquee 40s linear infinite;
   --animate-marquee-reverse: marquee-reverse 40s linear infinite;
-  --color-primary: #2563EB;
-  --color-background: #0A0A0B;
-  --color-surface: #121214;
+  --color-primary: #8B5CF6;
+  --color-background: #000000;
+  --color-surface: #0d0d0d;
   --color-outline-variant: #27272A;
   --color-on-background: #F3F4F6;
   --color-on-surface-variant: #71717A;
@@ -87,10 +87,10 @@ html {
 @keyframes pulse-glow {
   0%,
   100% {
-    box-shadow: 0 0 0px rgba(37, 99, 235, 0);
+    box-shadow: 0 0 0px rgba(139, 92, 246, 0);
   }
   50% {
-    box-shadow: 0 0 20px rgba(37, 99, 235, 0.15);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.15);
   }
 }
 
@@ -118,7 +118,7 @@ html {
 }
 
 .terminal-glow {
-  text-shadow: 0 0 8px rgba(37, 99, 235, 0.4);
+  text-shadow: 0 0 8px rgba(139, 92, 246, 0.4);
 }
 
 /* ---- Sleek glassmorphic card with gradient borders ---- */
@@ -159,8 +159,8 @@ button:active {
 }
 
 .bg-primary:hover {
-  box-shadow: 0 0 24px rgba(37, 99, 235, 0.25),
-    0 0 48px rgba(37, 99, 235, 0.1);
+  box-shadow: 0 0 24px rgba(139, 92, 246, 0.25),
+    0 0 48px rgba(139, 92, 246, 0.1);
 }
 
 /* ---- Card hover lift ---- */
@@ -190,19 +190,19 @@ section .group .w-12.h-12 {
 /* ---- Stat number glow ---- */
 
 .font-headline.text-6xl.font-black.text-primary {
-  text-shadow: 0 0 30px rgba(37, 99, 235, 0.2);
+  text-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
 }
 
 /* ---- Roadmap dots ---- */
 
 .rounded-full.bg-primary {
-  box-shadow: 0 0 12px rgba(37, 99, 235, 0.4);
+  box-shadow: 0 0 12px rgba(139, 92, 246, 0.4);
 }
 
 /* ---- Smooth gradient borders on hover ---- */
 
 .hover\:border-primary:hover {
-  box-shadow: 0 0 12px rgba(37, 99, 235, 0.08);
+  box-shadow: 0 0 12px rgba(139, 92, 246, 0.08);
 }
 
 /* ---- Protocol flow settlement bar ---- */
@@ -228,7 +228,7 @@ footer input[type="email"]:focus {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0a0b;
+  background: #000;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -242,7 +242,7 @@ footer input[type="email"]:focus {
 /* ---- Selection ---- */
 
 ::selection {
-  background: #2563eb;
+  background: #8B5CF6;
   color: #fff;
 }
 

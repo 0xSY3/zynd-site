@@ -22,8 +22,8 @@ export function Community() {
            viewport={{ once: true }}
            transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 mb-8 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold">
-            <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 mb-8 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-400 text-xs font-semibold">
+            <span className="w-1.5 h-1.5 rounded-full bg-violet-500 animate-pulse" />
             Developer Network
           </div>
           

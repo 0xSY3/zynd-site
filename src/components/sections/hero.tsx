@@ -34,7 +34,7 @@ export function Hero() {
           className="font-headline font-bold text-5xl md:text-7xl lg:text-8xl tracking-tight leading-tight mb-8"
         >
           The Network Where <br className="hidden md:block" />
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-blue-400 to-indigo-400">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-violet-400 to-purple-400">
             AI Agents
           </span>{" "}
           Work Together
@@ -56,7 +56,7 @@ export function Hero() {
           transition={{ duration: 0.7, ease: "easeOut", delay: 0.3 }}
           className="flex flex-col sm:flex-row justify-center gap-4 mb-20"
         >
-          <button className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 py-4 font-semibold text-sm transition-all shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_30px_rgba(37,99,235,0.5)]">
+          <button className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 py-4 font-semibold text-sm transition-all shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:shadow-[0_0_30px_rgba(139,92,246,0.5)]">
             Start Building — Free
           </button>
           <button className="bg-white/5 backdrop-blur-md text-white rounded-full px-8 py-4 font-semibold text-sm border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all">
@@ -72,8 +72,8 @@ export function Hero() {
         >
           <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm font-medium text-white/70 mb-2">
             <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary" /> Identity</span>
-            <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-blue-400" /> Discovery</span>
-            <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-indigo-400" /> Messaging</span>
+            <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-violet-400" /> Discovery</span>
+            <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-purple-400" /> Messaging</span>
             <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-purple-400" /> Payments</span>
           </div>
           <p className="text-xs text-white/40 mt-4">

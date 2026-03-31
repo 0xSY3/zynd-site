@@ -176,7 +176,7 @@ export function HowItWorks() {
           -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
         .ss-subtitle {
-          font-size: 14px; font-weight: 600; color: #3b82f6; letter-spacing: 0.02em;
+          font-size: 14px; font-weight: 600; color: #8B5CF6; letter-spacing: 0.02em;
         }
         .ss-center {
           grid-column: 2; grid-row: 1 / -1;
@@ -229,10 +229,10 @@ export function HowItWorks() {
         }
         .ss-bottom-logo {
           width: 44px; height: 44px; border-radius: 50%;
-          background: rgba(37,99,235,0.15); display: flex;
-          align-items: center; justify-content: center; border: 1px solid rgba(37,99,235,0.3);
+          background: rgba(139,92,246,0.15); display: flex;
+          align-items: center; justify-content: center; border: 1px solid rgba(139,92,246,0.3);
         }
-        .ss-bottom-logo svg { width: 20px; height: 20px; color: #3b82f6; }
+        .ss-bottom-logo svg { width: 20px; height: 20px; color: #8B5CF6; }
         .ss-bottom-pill {
           display: flex; align-items: center; padding: 4px;
           background: rgba(255,255,255,0.03); border-radius: 99px;
@@ -284,7 +284,7 @@ export function HowItWorks() {
           width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.1);
           transition: all 0.4s ease;
         }
-        .ss-dot.active { background: #3b82f6; transform: scale(1.5); box-shadow: 0 0 10px rgba(59,130,246,0.5); }
+        .ss-dot.active { background: #8B5CF6; transform: scale(1.5); box-shadow: 0 0 10px rgba(59,130,246,0.5); }
       `}</style>
 
       <div className="ss" ref={containerRef}>

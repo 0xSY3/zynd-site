@@ -31,7 +31,7 @@ const PHASES = [
 
 export function Roadmap() {
   return (
-    <section className="py-24 px-6 bg-[#040406] relative overflow-hidden">
+    <section className="py-24 px-6 bg-[#000000] relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <motion.h2 
            initial={{ opacity: 0, y: 20 }}
@@ -61,8 +61,8 @@ export function Roadmap() {
               >
                 {/* Node */}
                 <div
-                  className={`absolute top-0 left-0 w-14 h-14 rounded-full border-[8px] border-[#040406] flex items-center justify-center shadow-sm z-10 ${
-                    phase.active ? "bg-primary shadow-[0_0_20px_rgba(37,99,235,0.4)]" : "bg-white/10"
+                  className={`absolute top-0 left-0 w-14 h-14 rounded-full border-[8px] border-[#000000] flex items-center justify-center shadow-sm z-10 ${
+                    phase.active ? "bg-primary shadow-[0_0_20px_rgba(139,92,246,0.4)]" : "bg-white/10"
                   }`}
                 >
                   <div className={`w-3 h-3 rounded-full ${phase.active ? "bg-white" : "bg-white/30"}`} />

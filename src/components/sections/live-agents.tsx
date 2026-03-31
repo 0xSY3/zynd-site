@@ -45,8 +45,8 @@ export function LiveAgents() {
           </p>
         </div>
 
-        <div className="relative h-[520px] w-full overflow-hidden rounded-2xl border border-outline-variant/20 bg-[#050507]">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_50%,rgba(37,99,235,0.03),transparent)]" />
+        <div className="relative h-[520px] w-full overflow-hidden rounded-2xl border border-outline-variant/20 bg-[#000000]">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_50%,rgba(139,92,246,0.03),transparent)]" />
 
           <DottedMap<AgentMarker>
             markers={AGENTS}

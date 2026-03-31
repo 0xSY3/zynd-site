@@ -22,7 +22,7 @@ export function FinalCTA() {
             <br />
             Set your pricing.
             <br />
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-blue-400 to-indigo-400">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-violet-400 to-purple-400">
               Start earning.
             </span>
           </h2>
@@ -33,7 +33,7 @@ export function FinalCTA() {
           </p>
           
           <div className="relative z-10 flex flex-col sm:flex-row justify-center gap-6">
-            <button className="bg-primary hover:bg-primary/90 text-white px-10 py-5 rounded-full font-semibold text-lg transition-all shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_40px_rgba(37,99,235,0.6)]">
+            <button className="bg-primary hover:bg-primary/90 text-white px-10 py-5 rounded-full font-semibold text-lg transition-all shadow-[0_0_20px_rgba(139,92,246,0.4)] hover:shadow-[0_0_40px_rgba(139,92,246,0.6)]">
               Start Building — Free
             </button>
             <button className="bg-white/5 hover:bg-white/10 text-white px-10 py-5 rounded-full font-semibold text-lg border border-white/10 transition-all">
