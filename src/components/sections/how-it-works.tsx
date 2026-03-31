@@ -1,43 +1,44 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 
 const PRODUCTS = [
   {
-    title: "H402",
-    subtitle: "OPEN STANDARDS",
+    title: "Discovery",
+    subtitle: "Agent Registry",
     description:
-      "Machine2Machine payments protocol enabling agents to buy APIs, compute, and digital products with HTTP calls and native blockchain transfers.",
+      "Agents publish capabilities and find each other through semantic search. The registry matches tasks to the right specialist in milliseconds.",
     mediaUrl: "/videos/identity.mp4",
-    ctaText: "Try now",
-    ctaUrl: "https://h402.xyz/",
+    ctaText: "Explore Registry",
+    ctaUrl: "/registry",
     ctaDisabled: false,
   },
   {
-    title: "402pay",
-    subtitle: "SELF-CUSTODY CHECKOUT",
+    title: "Payments",
+    subtitle: "M2M Micropayments",
     description:
-      "Crypto and agent ready checkout with custom custody, lower fees, faster settlement, and clear controls for finance.",
+      "Agents pay each other per request with USDC on Base. Instant settlement, no intermediaries, and automatic revenue for every task completed.",
     mediaUrl: "/videos/discovery.mp4",
-    ctaText: "Try now",
-    ctaUrl: "https://www.402pay.com/",
+    ctaText: "View Protocol",
+    ctaUrl: "#",
     ctaDisabled: false,
   },
   {
-    title: "Agent Builder",
-    subtitle: "PRIVATE AGENTS",
+    title: "Messaging",
+    subtitle: "Secure Channels",
     description:
-      "From template or scratch, create powerful agents that execute tasks across channels, safely, with full control.",
+      "Agents communicate through encrypted webhook channels. Verified connections ensure only authenticated agents can exchange data.",
     mediaUrl: "/videos/messaging.mp4",
-    ctaText: "Try now",
-    ctaUrl: "https://agents.bitgpt.xyz/app",
+    ctaText: "Read Docs",
+    ctaUrl: "#",
     ctaDisabled: false,
   },
   {
-    title: "Digital IDs",
-    subtitle: "DIGITAL IDs",
+    title: "Identity",
+    subtitle: "Agent DIDs",
     description:
-      "Build trust with KYA enabled agent IDs that prove identity, permission scope, and intent before transactions proceed.",
+      "Every agent gets a decentralized identity with KYA verification. Prove capability, permission scope, and intent before any transaction.",
     mediaUrl: "/videos/payments.mp4",
     ctaText: "Coming soon",
     ctaUrl: "#",
@@ -47,26 +48,23 @@ const PRODUCTS = [
 
 function TabIcon({ index }: { index: number }) {
   const icons = [
-    // H402: text label
     <svg key="0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <rect x="3" y="3" width="18" height="18" rx="4" />
-      <text x="12" y="16" textAnchor="middle" fontSize="7" fontWeight="600" fill="currentColor" stroke="none">h402</text>
+      <rect x="3" y="3" width="18" height="18" rx="6" />
+      <circle cx="12" cy="12" r="3" />
+      <path d="M12 3v3M12 18v3M3 12h3M18 12h3" strokeLinecap="round" />
     </svg>,
-    // 402pay: X mark
     <svg key="1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <rect x="3" y="3" width="18" height="18" rx="4" />
-      <path d="M8 8l8 8M16 8l-8 8" />
+      <rect x="3" y="3" width="18" height="18" rx="6" />
+      <path d="M8 12h8M12 8v8" strokeLinecap="round" />
     </svg>,
-    // Agent Builder: checkmark
     <svg key="2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <rect x="3" y="3" width="18" height="18" rx="4" />
-      <path d="M9 12l2 2 4-4" />
+      <rect x="3" y="3" width="18" height="18" rx="6" />
+      <path d="M8 10h8M8 14h5" strokeLinecap="round" />
     </svg>,
-    // Digital IDs: person
     <svg key="3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <rect x="3" y="3" width="18" height="18" rx="4" />
+      <rect x="3" y="3" width="18" height="18" rx="6" />
       <circle cx="12" cy="10" r="3" />
-      <path d="M7 18c0-2.8 2.2-5 5-5s5 2.2 5 5" />
+      <path d="M7 18c0-2.8 2.2-5 5-5s5 2.2 5 5" strokeLinecap="round" />
     </svg>,
   ];
   return icons[index] || null;
@@ -131,20 +129,20 @@ export function HowItWorks() {
   }
 
   return (
-    <>
+    <section className="bg-background relative">
       <style>{`
         .ss { position: relative; }
         .ss-sticky {
-          position: sticky; top: 0; height: 100vh;
+          position: sticky; top: 0; height: 100vh; z-index: 1;
           display: flex; align-items: center; justify-content: center; overflow: hidden;
         }
         .ss-card {
-          width: min(90vw, 1280px); height: min(85vh, 720px);
-          background: #000000; border-radius: 32px;
-          display: grid; grid-template-columns: 1fr 1.2fr 1fr; grid-template-rows: auto 1fr;
-          padding: 48px; position: relative;
-          border: 1px solid rgba(255,255,255,0.12);
-          box-shadow: 0 24px 80px rgba(0,0,0,0.4);
+           width: min(90vw, 1280px); height: min(85vh, 720px);
+           background: #000000;
+           border-radius: 32px;
+           display: grid; grid-template-columns: 1fr 1.2fr 1fr; grid-template-rows: auto 1fr;
+           padding: 48px; position: relative;
+           border: 1px solid rgba(255,255,255,0.08);
         }
         .ss-tabs {
           grid-column: 3; grid-row: 1;
@@ -154,15 +152,12 @@ export function HowItWorks() {
           width: 56px; height: 56px; border-radius: 16px;
           display: flex; align-items: center; justify-content: center;
           cursor: pointer; background: rgba(255,255,255,0.04);
-          border: 1px solid rgba(255,255,255,0.12); outline: none; color: rgba(255,255,255,0.5);
-          transition: background-color 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.3s cubic-bezier(0.22,1,0.36,1), border-color 0.6s cubic-bezier(0.22,1,0.36,1);
+          border: 1px solid rgba(255,255,255,0.05); outline: none; color: rgba(255,255,255,0.4);
+          transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
         }
-        .ss-tab:hover { transform: scale(1.05); }
-        .ss-tab.active { background: #ffffff; color: #000000; border-color: #ffffff; }
-        .ss-tab svg {
-          width: 24px; height: 24px; color: inherit;
-          transition: color 0.6s cubic-bezier(0.22,1,0.36,1);
-        }
+        .ss-tab:hover { transform: scale(1.05); background: rgba(255,255,255,0.08); }
+        .ss-tab.active { background: rgba(255,255,255,0.1); color: #ffffff; border-color: rgba(255,255,255,0.2); }
+        .ss-tab svg { width: 24px; height: 24px; transition: color 0.4s; }
         .ss-left {
           grid-column: 1; grid-row: 1 / -1;
           display: flex; flex-direction: column; justify-content: flex-start;
@@ -170,34 +165,36 @@ export function HowItWorks() {
         .ss-title-group { position: relative; min-height: 120px; }
         .ss-title-item {
           position: absolute; top: 0; left: 0;
-          opacity: 0; transform: translateY(20px); pointer-events: none;
-          transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1);
+          opacity: 0; transform: translateY(15px); pointer-events: none;
+          transition: all 0.6s cubic-bezier(0.16,1,0.3,1);
         }
         .ss-title-item.active { opacity: 1; transform: translateY(0); pointer-events: auto; }
         .ss-title {
-          font-size: clamp(48px, 6vw, 80px); font-weight: 400;
-          letter-spacing: -0.04em; line-height: 1; margin-bottom: 16px; color: #F3F4F6;
+          font-size: clamp(40px, 5vw, 64px); font-weight: 700;
+          letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 12px;
+          background: linear-gradient(to right, #ffffff, #a1a1aa);
+          -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
         .ss-subtitle {
-          font-size: 14px; font-weight: 400;
-          letter-spacing: 0.05em; text-transform: uppercase; color: #71717A;
+          font-size: 14px; font-weight: 600; color: #3b82f6; letter-spacing: 0.02em;
         }
         .ss-center {
           grid-column: 2; grid-row: 1 / -1;
           display: flex; align-items: center; justify-content: center; position: relative;
+          z-index: 0;
         }
         .ss-media-wrapper { position: relative; width: 100%; height: 100%; min-height: 0; }
         .ss-media {
           position: absolute; inset: 0;
           display: flex; align-items: center; justify-content: center;
-          opacity: 0; transform: scale(0.95); pointer-events: none;
-          transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1);
+          opacity: 0; transform: scale(0.98); pointer-events: none;
+          transition: all 0.6s cubic-bezier(0.16,1,0.3,1);
         }
         .ss-media.active { opacity: 1; transform: scale(1); pointer-events: auto; }
         .ss-media video, .ss-media img {
           width: 100%; height: 100%; object-fit: cover;
-          border-radius: 12px; filter: invert(1);
-          border: 1px solid rgba(255,255,255,0.1);
+          border-radius: 20px; border: none;
+          filter: invert(1);
         }
         .ss-right {
           grid-column: 3; grid-row: 2;
@@ -206,78 +203,53 @@ export function HowItWorks() {
         .ss-desc-group { position: relative; min-height: 200px; }
         .ss-desc-item {
           position: absolute; bottom: 0; left: 0; right: 0;
-          opacity: 0; transform: translateY(20px); pointer-events: none;
-          transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1);
+          opacity: 0; transform: translateY(15px); pointer-events: none;
+          transition: all 0.6s cubic-bezier(0.16,1,0.3,1);
         }
         .ss-desc-item.active { opacity: 1; transform: translateY(0); pointer-events: auto; }
         .ss-description {
-          font-size: clamp(18px, 2vw, 24px); font-weight: 300;
-          letter-spacing: -0.03em; line-height: 1.3; margin-bottom: 24px; color: #a1a1aa;
+          font-size: clamp(16px, 1.8vw, 20px); font-weight: 400;
+          line-height: 1.5; margin-bottom: 24px; color: #a1a1aa;
         }
         .ss-cta {
           display: inline-flex; align-items: center; justify-content: center;
-          padding: 12px 24px; border-radius: 99px;
-          font-size: 14px; font-weight: 500; letter-spacing: -0.01em;
-          text-decoration: none; width: fit-content;
-          background: #ffffff; color: #000000;
-          border: 1px solid rgba(255,255,255,0.15);
-          transition: background-color 0.3s cubic-bezier(0.22,1,0.36,1), transform 0.2s cubic-bezier(0.22,1,0.36,1);
+          padding: 12px 28px; border-radius: 99px; font-size: 14px; font-weight: 600;
+          background: #ffffff; color: #000000; box-shadow: 0 4px 14px rgba(255,255,255,0.2);
+          transition: all 0.3s ease; text-decoration: none; width: fit-content;
         }
-        .ss-cta:hover { transform: scale(1.03); }
-        .ss-cta:active { transform: scale(0.98); }
+        .ss-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,255,255,0.3); }
+        .ss-cta:active { transform: translateY(0); }
         .ss-cta--disabled {
-          background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.4);
-          pointer-events: none; border-color: rgba(255,255,255,0.1);
+          background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.3);
+          box-shadow: none; pointer-events: none;
         }
         .ss-bottom-nav {
-          position: absolute; bottom: 48px; left: 48px; z-index: 5;
-          display: flex; align-items: center; gap: 12px;
+          position: absolute; bottom: 40px; left: 48px; z-index: 5;
+          display: flex; align-items: center; gap: 16px;
         }
         .ss-bottom-logo {
           width: 44px; height: 44px; border-radius: 50%;
-          background: rgba(255,255,255,0.12); display: flex;
-          align-items: center; justify-content: center;
+          background: rgba(37,99,235,0.15); display: flex;
+          align-items: center; justify-content: center; border: 1px solid rgba(37,99,235,0.3);
         }
-        .ss-bottom-logo svg { width: 20px; height: 20px; color: #ffffff; }
+        .ss-bottom-logo svg { width: 20px; height: 20px; color: #3b82f6; }
         .ss-bottom-pill {
-          display: flex; align-items: center; gap: 0;
-          background: rgba(255,255,255,0.12); border-radius: 99px;
-          padding: 4px;
+          display: flex; align-items: center; padding: 4px;
+          background: rgba(255,255,255,0.03); border-radius: 99px;
+          border: 1px solid rgba(255,255,255,0.05);
         }
         .ss-bottom-pill a {
-          padding: 8px 16px; border-radius: 99px; font-size: 14px;
-          font-weight: 500; color: rgba(255,255,255,0.85);
-          text-decoration: none; transition: color 0.2s;
-          letter-spacing: -0.01em;
+          padding: 8px 16px; border-radius: 99px; font-size: 13px; font-weight: 500;
+          color: rgba(255,255,255,0.6); transition: all 0.2s;
         }
-        .ss-bottom-pill a:hover { color: #ffffff; }
+        .ss-bottom-pill a:hover { color: #ffffff; background: rgba(255,255,255,0.05); }
         .ss-bottom-contact {
-          padding: 8px 20px; border-radius: 99px; font-size: 14px;
-          font-weight: 500; color: rgba(255,255,255,0.7);
-          text-decoration: none; border: 1px solid rgba(255,255,255,0.2);
-          transition: color 0.2s, border-color 0.2s;
-          letter-spacing: -0.01em;
+          padding: 10px 20px; border-radius: 99px; font-size: 13px; font-weight: 500;
+          color: #ffffff; border: 1px solid rgba(255,255,255,0.1);
+          transition: all 0.2s; background: rgba(255,255,255,0.02);
         }
-        .ss-bottom-contact:hover { color: #ffffff; border-color: rgba(255,255,255,0.4); }
-        @media (max-width: 640px) {
-          .ss-bottom-nav { bottom: 24px; left: 24px; gap: 8px; }
-          .ss-bottom-logo { width: 36px; height: 36px; }
-          .ss-bottom-pill a { padding: 6px 12px; font-size: 13px; }
-          .ss-bottom-contact { padding: 6px 14px; font-size: 13px; }
-        }
-        .ss-triggers { position: relative; }
-        .ss-trigger { height: 100vh; }
-        .ss-dots {
-          position: absolute; right: 48px; top: 50%; transform: translateY(-50%);
-          display: flex; flex-direction: column; gap: 8px; z-index: 10;
-        }
-        .ss-dot {
-          width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.15);
-          border: 1px solid rgba(255,255,255,0.1);
-          transition: background 0.3s cubic-bezier(0.22,1,0.36,1), transform 0.3s cubic-bezier(0.22,1,0.36,1);
-        }
-        .ss-dot.active { background: #ffffff; border-color: #ffffff; transform: scale(1.3); }
-
+        .ss-bottom-contact:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); }
+        
         @media (max-width: 1024px) {
           .ss-card {
             grid-template-columns: 1fr 1fr; grid-template-rows: auto 1fr auto;
@@ -299,10 +271,20 @@ export function HowItWorks() {
           .ss-center { grid-column: 1; grid-row: 3; }
           .ss-right { grid-column: 1; grid-row: 4; }
           .ss-tab { width: 44px; height: 44px; border-radius: 12px; }
-          .ss-title { font-size: 36px; }
-          .ss-description { font-size: 16px; }
-          .ss-dots { display: none; }
+          .ss-title { font-size: 32px; }
+          .ss-description { font-size: 15px; }
         }
+        .ss-triggers { position: relative; }
+        .ss-trigger { height: 100vh; }
+        .ss-dots {
+          position: absolute; right: 40px; top: 50%; transform: translateY(-50%);
+          display: flex; flex-direction: column; gap: 10px; z-index: 10;
+        }
+        .ss-dot {
+          width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.1);
+          transition: all 0.4s ease;
+        }
+        .ss-dot.active { background: #3b82f6; transform: scale(1.5); box-shadow: 0 0 10px rgba(59,130,246,0.5); }
       `}</style>
 
       <div className="ss" ref={containerRef}>
@@ -371,22 +353,16 @@ export function HowItWorks() {
               </div>
             </div>
 
-            {/* Bottom nav bar */}
             <div className="ss-bottom-nav">
               <div className="ss-bottom-logo">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-                  <circle cx="12" cy="12" r="2" fill="currentColor" stroke="none" />
-                  <circle cx="12" cy="6" r="1.5" fill="currentColor" stroke="none" />
-                  <circle cx="12" cy="18" r="1.5" fill="currentColor" stroke="none" />
-                  <circle cx="6" cy="9" r="1.5" fill="currentColor" stroke="none" />
-                  <circle cx="18" cy="9" r="1.5" fill="currentColor" stroke="none" />
-                  <circle cx="6" cy="15" r="1.5" fill="currentColor" stroke="none" />
-                  <circle cx="18" cy="15" r="1.5" fill="currentColor" stroke="none" />
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
                 </svg>
               </div>
               <div className="ss-bottom-pill">
-                <a href="#">Protocol</a>
-                <a href="#">Developers</a>
+                <Link href="#">Protocol</Link>
+                <Link href="/registry">Registry</Link>
+                <Link href="#">Developers</Link>
               </div>
               <a href="#" className="ss-bottom-contact">
                 Join Network
@@ -401,6 +377,6 @@ export function HowItWorks() {
           ))}
         </div>
       </div>
-    </>
+    </section>
   );
 }

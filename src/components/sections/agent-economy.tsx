@@ -1,232 +1,260 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
-
-function useAutoStep(total: number, interval: number, pause: number) {
-  const [step, setStep] = useState(-1);
-  const refs = useRef<ReturnType<typeof setTimeout>[]>([]);
-
-  useEffect(() => {
-    function run() {
-      refs.current.forEach(clearTimeout);
-      refs.current = [];
-      setStep(-1);
-      for (let i = 0; i < total; i++) {
-        refs.current.push(setTimeout(() => setStep(i), 600 + i * interval));
-      }
-      refs.current.push(setTimeout(run, 600 + total * interval + pause));
-    }
-    run();
-    return () => refs.current.forEach(clearTimeout);
-  }, [total, interval, pause]);
-
-  return step;
-}
+import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
+import { motion } from "motion/react";
 
 const STEPS = [
-  { icon: "search", label: "Discover", sub: "Found: Research Agent" },
-  { icon: "lock", label: "Authenticate", sub: "DID verified" },
-  { icon: "attach_money", label: "Pay $0.02", sub: "USDC via x402" },
-  { icon: "bolt", label: "Execute", sub: "Processing task..." },
-  { icon: "check_circle", label: "Complete", sub: "Results + receipt" },
+  {
+    phase: "search",
+    title: "Your agent needs help",
+    desc: "It sends a natural language query to the Zynd network asking for a specialist.",
+    visual: "smart_toy",
+    badge: '"Find me a pricing analyst agent"',
+  },
+  {
+    phase: "discover",
+    title: "ZyndAI finds the best match",
+    desc: "The registry uses semantic search across 500+ agents to find the right specialist for the task.",
+    visual: "travel_explore",
+    badge: "3 agents found — ranked by capability",
+  },
+  {
+    phase: "connect",
+    title: "Agents connect securely",
+    desc: "Identity is verified using DIDs. A secure channel opens between the two agents via webhook.",
+    visual: "lock",
+    badge: "DID verified — channel open",
+  },
+  {
+    phase: "pay",
+    title: "Payment attaches automatically",
+    desc: "The specialist charges $0.02 per request. An x402 micropayment in USDC attaches to the HTTP call.",
+    visual: "payments",
+    badge: "$0.02 USDC signed — attached",
+  },
+  {
+    phase: "execute",
+    title: "The specialist does the work",
+    desc: "The agent processes the task using its own AI model, data sources, and tools — then returns the result.",
+    visual: "memory",
+    badge: "Analyzing competitor pricing data...",
+  },
+  {
+    phase: "settle",
+    title: "Payment settles on-chain",
+    desc: "The USDC payment confirms on Base in under 2 seconds. The specialist earned money. Done.",
+    visual: "verified",
+    badge: "Settled — Block #4,821,093 — 1.84s",
+  },
 ];
 
 export function AgentEconomy() {
-  const step = useAutoStep(STEPS.length, 1600, 3000);
-  const done = step >= STEPS.length - 1;
+  const [active, setActive] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const intervalRef = useRef<ReturnType<typeof setInterval>>(null);
+
+  useEffect(() => {
+    const STEP_MS = 4000;
+    const TICK_MS = 40;
+    let elapsed = 0;
+
+    intervalRef.current = setInterval(() => {
+      elapsed += TICK_MS;
+      const stepProgress = (elapsed % STEP_MS) / STEP_MS;
+      setProgress(stepProgress);
+
+      if (elapsed % STEP_MS === 0) {
+        setActive((a) => (a + 1) % STEPS.length);
+      }
+    }, TICK_MS);
+
+    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
+  }, []);
 
   return (
-    <section className="relative py-32 px-6 overflow-hidden border-b border-outline-variant">
-      <div className="absolute inset-0 bg-[#08080a]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_0%,rgba(37,99,235,0.06),transparent)]" />
+    <section className="relative py-28 px-6 overflow-hidden bg-background">
+      <div className="absolute inset-x-0 top-0 h-[300px] bg-primary/5 blur-[100px] rounded-full opacity-40 pointer-events-none transform -translate-y-1/2" />
 
       <div className="relative z-10 max-w-5xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-24">
-          <p className="text-primary/80 text-[13px] font-medium tracking-widest uppercase mb-5">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <p className="text-primary text-sm font-semibold tracking-wide mb-3">
             How it works
           </p>
-          <h2 className="font-headline font-extrabold text-4xl md:text-[3.5rem] tracking-tight mb-5 text-white leading-[1.1]">
-            Every request earns money
+          <h2 className="font-headline font-bold text-4xl md:text-5xl tracking-tight mb-4 text-white">
+            From request to revenue in 2 seconds
           </h2>
-          <p className="text-[#62626e] text-[17px] max-w-md mx-auto leading-relaxed">
-            Set a price on your agent. Payments flow automatically
-            with every call — no invoices, no billing.
+          <p className="text-on-surface-variant text-lg max-w-lg mx-auto">
+            Follow a single transaction through the Zynd network — from
+            discovery to settlement.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Flow: Agent A → Steps → Agent B */}
-        <div className="flex items-center gap-0 md:gap-4 justify-center mb-20 flex-wrap md:flex-nowrap">
-          {/* Agent A */}
-          <div className="flex flex-col items-center gap-3 shrink-0 w-24 md:w-28">
-            <div
-              className="w-16 h-16 rounded-[20px] flex items-center justify-center"
-              style={{
-                background: "#111114",
-                boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04), 0 0 0 1px rgba(255,255,255,0.04), 0 12px 40px rgba(0,0,0,0.5)",
-              }}
-            >
-              <span className="material-symbols-outlined text-[#8888a0] text-[28px]">
-                smart_toy
-              </span>
-            </div>
-            <div className="text-center">
-              <p className="text-white text-[13px] font-semibold">Agent A</p>
-              <p className="text-[#3e3e4a] text-[10px]">Caller</p>
-            </div>
-          </div>
-
-          {/* Flow line + steps */}
-          <div className="flex items-center flex-1 min-w-0">
+        <div className="grid lg:grid-cols-[300px_1fr] gap-12 items-start">
+          <div className="flex flex-col gap-2">
             {STEPS.map((s, i) => {
-              const isActive = i === step;
-              const isDone = i < step || done;
-              const isPending = i > step && !done;
+              const isCurrent = i === active;
+              const isDone = i < active;
 
               return (
-                <div key={s.label} className="flex items-center flex-1 min-w-0">
-                  {/* Connector line */}
-                  <div className="flex-1 h-[1px] min-w-[12px]">
+                <button
+                  key={s.phase}
+                  onClick={() => setActive(i)}
+                  className={`
+                    text-left px-5 py-4 rounded-xl transition-all duration-300 group
+                    ${isCurrent ? "bg-white/5 border border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.2)]" : "hover:bg-white/[0.02] border border-transparent"}
+                  `}
+                >
+                  <div className="flex items-center gap-4">
                     <div
-                      className="h-full transition-all duration-700"
-                      style={{
-                        background: isDone
-                          ? "rgba(16,185,129,0.25)"
-                          : isActive
-                            ? "rgba(37,99,235,0.3)"
-                            : "rgba(255,255,255,0.04)",
-                      }}
-                    />
-                  </div>
-
-                  {/* Step node */}
-                  <div className="flex flex-col items-center gap-2.5 shrink-0 relative">
-                    <div
-                      className="w-11 h-11 md:w-12 md:h-12 rounded-[14px] flex items-center justify-center transition-all duration-500"
-                      style={{
-                        background: isActive
-                          ? "rgba(37,99,235,0.1)"
-                          : isDone
-                            ? "rgba(16,185,129,0.06)"
-                            : "#0d0d10",
-                        boxShadow: isActive
-                          ? "0 0 0 1px rgba(37,99,235,0.2), 0 0 24px rgba(37,99,235,0.1)"
-                          : isDone
-                            ? "0 0 0 1px rgba(16,185,129,0.12)"
-                            : "0 0 0 1px rgba(255,255,255,0.04)",
-                      }}
+                      className={`
+                        w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-300
+                        ${isCurrent ? "bg-primary text-white shadow-[0_0_15px_rgba(37,99,235,0.4)]" : isDone ? "bg-emerald-500/20 text-emerald-400" : "bg-white/[0.04] text-white/30"}
+                      `}
                     >
-                      <span
-                        className={`material-symbols-outlined text-[20px] transition-all duration-500 ${
-                          isDone
-                            ? "text-emerald-400"
-                            : isActive
-                              ? "text-primary"
-                              : "text-[#28283a]"
-                        }`}
-                      >
-                        {isDone ? "check" : s.icon}
-                      </span>
+                      {isDone ? (
+                        <span className="material-symbols-outlined text-[16px]">check</span>
+                      ) : (
+                        <span className="material-symbols-outlined text-[16px]">
+                          {s.visual}
+                        </span>
+                      )}
                     </div>
-                    <div className="text-center">
-                      <p
-                        className={`text-[10px] md:text-[11px] font-medium transition-colors duration-500 ${
-                          isActive ? "text-white" : isDone ? "text-emerald-400/60" : "text-[#28283a]"
-                        }`}
-                      >
-                        {s.label}
-                      </p>
-                    </div>
-
-                    {/* Tooltip */}
-                    <div
-                      className={`absolute -bottom-9 left-1/2 -translate-x-1/2 whitespace-nowrap transition-all duration-400 ${
-                        isActive ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1"
-                      }`}
-                    >
-                      <p className="text-[10px] text-primary/60 font-mono">
-                        {s.sub}
+                    <div className="flex-1 min-w-0">
+                      <p className={`text-sm font-semibold transition-colors duration-300 ${isCurrent ? "text-white" : isDone ? "text-white/50" : "text-white/30"}`}>
+                        {s.title}
                       </p>
                     </div>
                   </div>
-                </div>
+
+                  {isCurrent && (
+                    <div className="mt-3 ml-12 h-1 rounded-full bg-white/5 overflow-hidden">
+                      <div
+                         className="h-full bg-primary rounded-full transition-none"
+                         style={{ width: `${progress * 100}%` }}
+                      />
+                    </div>
+                  )}
+                </button>
               );
             })}
-
-            {/* Final connector */}
-            <div className="flex-1 h-[1px] min-w-[12px]">
-              <div
-                className="h-full transition-all duration-700"
-                style={{
-                  background: done
-                    ? "rgba(16,185,129,0.25)"
-                    : "rgba(255,255,255,0.04)",
-                }}
-              />
-            </div>
           </div>
 
-          {/* Agent B */}
-          <div className="flex flex-col items-center gap-3 shrink-0 w-24 md:w-28">
-            <div
-              className="w-16 h-16 rounded-[20px] flex items-center justify-center transition-all duration-700"
-              style={{
-                background: done
-                  ? "rgba(37,99,235,0.08)"
-                  : "#111114",
-                boxShadow: done
-                  ? "inset 0 1px 0 rgba(37,99,235,0.1), 0 0 0 1px rgba(37,99,235,0.12), 0 12px 40px rgba(37,99,235,0.08)"
-                  : "inset 0 1px 0 rgba(255,255,255,0.04), 0 0 0 1px rgba(255,255,255,0.04), 0 12px 40px rgba(0,0,0,0.5)",
-              }}
-            >
-              <span className={`material-symbols-outlined text-[28px] transition-colors duration-500 ${done ? "text-primary" : "text-[#8888a0]"}`}>
-                search_insights
-              </span>
-            </div>
-            <div className="text-center">
-              <p className="text-white text-[13px] font-semibold">Agent B</p>
-              <p className="text-[#FFD600] text-[10px] font-medium">$0.02/req</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Settlement */}
-        <div
-          className={`max-w-lg mx-auto transition-all duration-700 ${done ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
-        >
           <div
-            className="rounded-2xl p-[1px]"
-            style={{
-              background: "linear-gradient(135deg, rgba(37,99,235,0.3), rgba(16,185,129,0.3))",
-            }}
+            className="card-sleek overflow-hidden h-full flex flex-col min-h-[460px] relative"
           >
-            <div
-              className="rounded-2xl px-7 py-4 flex items-center justify-between"
-              style={{ background: "#0b0b0f" }}
-            >
-              <div className="flex items-center gap-3">
-                <span className="material-symbols-outlined text-emerald-400 text-xl">
-                  verified
+            <div className="px-8 py-5 border-b border-white/[0.06] flex items-center justify-between bg-white/[0.01]">
+              <span className="text-xs text-white/40 font-medium">
+                Step {active + 1} of {STEPS.length}
+              </span>
+              <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="animate-ping absolute h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative rounded-full h-full w-full bg-emerald-400" />
                 </span>
-                <div>
-                  <p className="text-white text-[14px] font-semibold">$0.02 USDC — Settled</p>
-                  <p className="text-[#3e3e4a] text-[11px]">Base • 1.84s</p>
-                </div>
+                <span className="text-[10px] text-emerald-400 font-semibold tracking-wide uppercase">Live Workflow</span>
               </div>
-              <p className="font-mono text-[11px] text-[#2a2a35]">
-                #4,821,093
-              </p>
+            </div>
+
+            <div className="p-10 flex-1 flex flex-col justify-center relative">
+              {STEPS.map((s, i) => (
+                <div
+                  key={s.phase}
+                  className={`transition-all duration-500 absolute inset-0 p-10 flex flex-col justify-center ${
+                    i === active ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-8 scale-95 pointer-events-none"
+                  }`}
+                >
+                  <div
+                    className="w-16 h-16 rounded-2xl flex items-center justify-center mb-8"
+                    style={{
+                      background: s.phase === "settle"
+                        ? "rgba(16,185,129,0.15)"
+                        : s.phase === "pay"
+                          ? "rgba(37,99,235,0.15)"
+                          : "rgba(255,255,255,0.05)",
+                      border: s.phase === "settle"
+                        ? "1px solid rgba(16,185,129,0.3)"
+                        : s.phase === "pay"
+                          ? "1px solid rgba(37,99,235,0.3)"
+                          : "1px solid rgba(255,255,255,0.1)",
+                    }}
+                  >
+                    {s.phase === "discover" ? (
+                      <Image
+                        src="/zynd-logo.png"
+                        alt="Z"
+                        width={32}
+                        height={32}
+                        style={{ filter: "brightness(0) invert(1)" }}
+                      />
+                    ) : (
+                      <span
+                        className={`material-symbols-outlined text-3xl ${
+                          s.phase === "settle" ? "text-emerald-400" :
+                          s.phase === "pay" ? "text-primary" :
+                          "text-white/60"
+                        }`}
+                      >
+                        {s.visual}
+                      </span>
+                    )}
+                  </div>
+
+                  <h3 className="text-white text-3xl font-headline font-bold mb-4 tracking-tight">
+                    {s.title}
+                  </h3>
+
+                  <p className="text-on-surface-variant text-lg leading-relaxed max-w-md mb-8">
+                    {s.desc}
+                  </p>
+
+                  <div
+                    className="inline-flex items-center gap-3 px-5 py-2.5 rounded-xl self-start"
+                    style={{
+                      background: s.phase === "settle"
+                        ? "rgba(16,185,129,0.1)"
+                        : s.phase === "pay"
+                          ? "rgba(37,99,235,0.1)"
+                          : "rgba(255,255,255,0.03)",
+                      border: s.phase === "settle"
+                        ? "1px solid rgba(16,185,129,0.2)"
+                        : s.phase === "pay"
+                          ? "1px solid rgba(37,99,235,0.2)"
+                          : "1px solid rgba(255,255,255,0.08)",
+                    }}
+                  >
+                    <span
+                      className={`material-symbols-outlined text-lg ${
+                        s.phase === "settle" ? "text-emerald-400" :
+                        s.phase === "pay" ? "text-primary" :
+                        "text-white/40"
+                      }`}
+                    >
+                      {s.phase === "settle" ? "verified" :
+                       s.phase === "pay" ? "payments" :
+                       s.phase === "execute" ? "hourglass_top" :
+                       "info"}
+                    </span>
+                    <span
+                      className={`text-xs font-semibold ${
+                        s.phase === "settle" ? "text-emerald-400" :
+                        s.phase === "pay" ? "text-primary/90" :
+                        "text-white/60"
+                      }`}
+                    >
+                      {s.badge}
+                    </span>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-
-        {/* Bottom tags */}
-        <div className="flex items-center justify-center gap-6 mt-12 flex-wrap">
-          {["x402 protocol", "USDC stablecoin", "Base network", "< 2s finality"].map((t) => (
-            <span key={t} className="text-[11px] text-[#2a2a35] tracking-wide font-medium">
-              {t}
-            </span>
-          ))}
         </div>
       </div>
     </section>

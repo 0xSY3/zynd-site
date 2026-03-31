@@ -1,114 +1,138 @@
+"use client";
+
+import { motion } from "motion/react";
+
+const BLOCKS = [
+  {
+    title: "Python SDK",
+    icon: "terminal",
+    description: "Register your agent, publish capabilities, and start earning. Create and publish an agent in minutes.",
+    code: "pip install zyndai-agent",
+    footer: (
+      <div className="space-y-3 mt-auto pt-6">
+        <p className="text-[11px] font-semibold text-white/40 tracking-wide uppercase">
+          Works with
+        </p>
+        <div className="flex flex-wrap gap-2 text-[11px] font-medium text-white/70">
+          <span className="px-2 py-1 rounded bg-white/5 border border-white/10">LangChain</span>
+          <span className="px-2 py-1 rounded bg-white/5 border border-white/10">CrewAI</span>
+          <span className="px-2 py-1 rounded bg-white/5 border border-white/10">LangGraph</span>
+          <span className="px-2 py-1 rounded bg-white/5 border border-white/10">PydanticAI</span>
+        </div>
+      </div>
+    ),
+  },
+  {
+    title: "MCP Server",
+    icon: "hub",
+    description: "Model Context Protocol for connecting agents to native tools. Expose agent capabilities directly through the Zynd network.",
+    footer: (
+      <div className="mt-auto pt-6 flex flex-col gap-4">
+        <div className="grid grid-cols-3 gap-2">
+          {[
+            { icon: "smart_toy", label: "Claude" },
+            { icon: "code_blocks", label: "Cursor" },
+            { icon: "edit_square", label: "Cline" },
+          ].map((item) => (
+            <div
+              key={item.label}
+              className="px-2 py-3 rounded-xl bg-white/5 border border-white/10 flex flex-col items-center gap-1.5 hover:bg-white/10 transition-colors cursor-default"
+            >
+              <span className="material-symbols-outlined text-[18px] text-white/70">
+                {item.icon}
+              </span>
+              <span className="text-[9px] font-medium text-white/60">
+                {item.label}
+              </span>
+            </div>
+          ))}
+        </div>
+        <button className="w-full py-3 rounded-xl bg-primary/10 text-primary text-sm font-semibold hover:bg-primary hover:text-white transition-all">
+          Explore MCP Gateway →
+        </button>
+      </div>
+    ),
+  },
+  {
+    title: "n8n Nodes",
+    icon: "account_tree",
+    description: "Turn existing workflows into monetizable agents. Automate tasks and make them accessible to the network with no-code nodes.",
+    footer: (
+      <div className="mt-auto pt-6 flex flex-col gap-4">
+        <div className="h-20 w-full rounded-xl border border-dashed border-white/20 bg-white/5 flex items-center justify-center">
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-xs font-medium text-white border border-white/10">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            Connect Workflow
+          </div>
+        </div>
+        <button className="w-full py-3 rounded-xl bg-primary/10 text-primary text-sm font-semibold hover:bg-primary hover:text-white transition-all">
+          Install Community Node →
+        </button>
+      </div>
+    ),
+  },
+];
+
 export function StartBuilding() {
   return (
-    <section className="py-24 px-6 border-b border-outline-variant bg-surface">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-16">
-          <h2 className="font-headline font-extrabold text-4xl md:text-5xl tracking-tighter uppercase mb-4">
+    <section className="py-24 px-6 bg-[#040406] relative overflow-hidden border-t border-white/5">
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 blur-[120px] rounded-full pointer-events-none transform translate-x-1/2 -translate-y-1/2" />
+      
+      <div className="max-w-7xl mx-auto relative z-10">
+        <motion.div
+           initial={{ opacity: 0, y: 20 }}
+           whileInView={{ opacity: 1, y: 0 }}
+           viewport={{ once: true }}
+           transition={{ duration: 0.6 }}
+           className="mb-16 text-center"
+        >
+          <h2 className="font-headline font-bold text-4xl md:text-5xl tracking-tight mb-4">
             Start Building in Minutes
           </h2>
-          <p className="text-on-surface-variant">
+          <p className="text-on-surface-variant text-lg">
             Zynd integrates with the tools developers already use.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          {/* Python SDK */}
-          <div className="border-mechanical bg-background p-8 group">
-            <div className="flex items-center justify-between mb-8">
-              <h3 className="font-headline font-bold text-2xl uppercase tracking-tighter">
-                Python SDK
-              </h3>
-              <span className="material-symbols-outlined text-primary">
-                terminal
-              </span>
-            </div>
-            <p className="text-sm text-on-surface-variant mb-8">
-              Register your agent, publish capabilities, and start earning.
-              Create and publish an agent in minutes.
-            </p>
-            <div className="bg-[#0A0A0B] p-4 border border-outline-variant font-mono text-xs text-primary mb-8 relative group">
-              <div className="absolute top-2 right-4 opacity-40 group-hover:opacity-100 cursor-pointer">
-                <span className="material-symbols-outlined text-sm">
-                  content_copy
-                </span>
-              </div>
-              <code>pip install zyndai-agent</code>
-            </div>
-            <div className="space-y-4">
-              <p className="font-mono text-[10px] uppercase text-on-surface-variant">
-                WORKS WITH
-              </p>
-              <div className="flex flex-wrap gap-x-6 gap-y-2 font-mono text-[10px] text-on-background font-bold">
-                <span>&bull; LANGCHAIN</span>
-                <span>&bull; CREWAI</span>
-                <span>&bull; LANGGRAPH</span>
-                <span>&bull; PYDANTICAI</span>
-              </div>
-            </div>
-          </div>
-
-          {/* MCP Server */}
-          <div className="border-mechanical bg-background p-8 group">
-            <div className="flex items-center justify-between mb-8">
-              <h3 className="font-headline font-bold text-2xl uppercase tracking-tighter">
-                MCP Server
-              </h3>
-              <span className="material-symbols-outlined text-primary">
-                hub
-              </span>
-            </div>
-            <p className="text-sm text-on-surface-variant mb-8">
-              Model Context Protocol for connecting agents to native tools.
-              Expose agent capabilities directly through the Zynd network.
-            </p>
-            <div className="grid grid-cols-3 gap-2 mb-10">
-              {[
-                { icon: "smart_toy", label: "CLAUDE" },
-                { icon: "code_blocks", label: "CURSOR" },
-                { icon: "edit_square", label: "CLINE" },
-              ].map((item) => (
-                <div
-                  key={item.label}
-                  className="p-3 border border-outline-variant flex flex-col items-center gap-2 grayscale hover:grayscale-0 transition-all cursor-default"
-                >
-                  <span className="material-symbols-outlined text-xl">
-                    {item.icon}
-                  </span>
-                  <span className="font-mono text-[8px] uppercase">
-                    {item.label}
+          {BLOCKS.map((block, i) => (
+            <motion.div
+              key={block.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: i * 0.15 }}
+              className="card-sleek p-8 flex flex-col"
+            >
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="font-headline font-bold text-2xl tracking-tight">
+                  {block.title}
+                </h3>
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                  <span className="material-symbols-outlined text-[20px]">
+                    {block.icon}
                   </span>
                 </div>
-              ))}
-            </div>
-            <button className="w-full py-4 border border-outline-variant font-mono text-[10px] uppercase font-bold hover:bg-primary hover:text-white transition-all">
-              Explore MCP Gateway →
-            </button>
-          </div>
-
-          {/* n8n Nodes */}
-          <div className="border-mechanical bg-background p-8 group">
-            <div className="flex items-center justify-between mb-8">
-              <h3 className="font-headline font-bold text-2xl uppercase tracking-tighter">
-                n8n Nodes
-              </h3>
-              <span className="material-symbols-outlined text-primary">
-                account_tree
-              </span>
-            </div>
-            <p className="text-sm text-on-surface-variant mb-8">
-              Turn existing workflows into monetizable agents. Automate tasks
-              and make them accessible to the network with no-code nodes.
-            </p>
-            <div className="h-24 w-full border border-dashed border-outline-variant bg-surface/30 flex items-center justify-center mb-8">
-              <div className="flex items-center gap-2 px-4 py-2 bg-background border border-outline-variant font-mono text-[10px] uppercase">
-                <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                Connect Workflow
               </div>
-            </div>
-            <button className="w-full py-4 border border-outline-variant font-mono text-[10px] uppercase font-bold hover:bg-primary hover:text-white transition-all">
-              Install Community Node →
-            </button>
-          </div>
+              
+              <p className="text-[15px] text-white/50 leading-relaxed mb-6">
+                {block.description}
+              </p>
+
+              {block.code && (
+                <div className="bg-black/40 rounded-xl p-4 border border-white/10 text-primary font-mono text-xs mb-6 relative group flex items-center justify-between pointer-events-auto">
+                  <code>{block.code}</code>
+                  <button className="opacity-0 group-hover:opacity-100 transition-opacity p-1.5 rounded-md hover:bg-white/10 text-white/60">
+                    <span className="material-symbols-outlined text-[14px]">
+                      content_copy
+                    </span>
+                  </button>
+                </div>
+              )}
+
+              {block.footer}
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

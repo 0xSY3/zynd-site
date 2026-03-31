@@ -121,33 +121,8 @@ export function AnimationProvider({
       }
     });
 
-    // --- Staggered grid reveals (features, agents, use cases, SDK cards) ---
-    const gridSelectors = [
-      ".grid.md\\:grid-cols-2.lg\\:grid-cols-4 > div",
-      ".grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3 > div",
-      ".grid.lg\\:grid-cols-3 > div",
-      ".grid.md\\:grid-cols-2.lg\\:grid-cols-3.gap-8 > div",
-    ];
-
-    gridSelectors.forEach((selector) => {
-      const items = gsap.utils.toArray<HTMLElement>(selector);
-      if (!items.length) return;
-
-      items.forEach((item, i) => {
-        gsap.from(item, {
-          y: 40,
-          opacity: 0,
-          duration: 0.6,
-          delay: i * 0.08,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: item,
-            start: "top 90%",
-            toggleActions: "play none none none",
-          },
-        });
-      });
-    });
+    // Grid stagger reveals removed — components use framer-motion whileInView instead.
+    // GSAP gsap.from() conflicts with framer-motion by resetting opacity on trigger.
 
     // --- Comparison table reveal ---
     const tableRows = gsap.utils.toArray<HTMLElement>(
