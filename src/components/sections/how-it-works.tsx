@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 const PRODUCTS = [
@@ -48,23 +49,22 @@ const PRODUCTS = [
 
 function TabIcon({ index }: { index: number }) {
   const icons = [
-    <svg key="0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <rect x="3" y="3" width="18" height="18" rx="6" />
-      <circle cx="12" cy="12" r="3" />
-      <path d="M12 3v3M12 18v3M3 12h3M18 12h3" strokeLinecap="round" />
+    // Discovery — solid radar/globe
+    <svg key="0" viewBox="0 0 24 24" fill="currentColor">
+      <circle cx="12" cy="12" r="10" />
     </svg>,
-    <svg key="1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <rect x="3" y="3" width="18" height="18" rx="6" />
-      <path d="M8 12h8M12 8v8" strokeLinecap="round" />
+    // Payments — solid dollar circle
+    <svg key="1" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" />
+      <text x="12" y="16.5" textAnchor="middle" fontSize="13" fontWeight="800" fill="black" fontFamily="system-ui">$</text>
     </svg>,
-    <svg key="2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <rect x="3" y="3" width="18" height="18" rx="6" />
-      <path d="M8 10h8M8 14h5" strokeLinecap="round" />
+    // Messaging — solid chat
+    <svg key="2" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M2 4c0-1.1.9-2 2-2h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H6l-4 4V4z" />
     </svg>,
-    <svg key="3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <rect x="3" y="3" width="18" height="18" rx="6" />
-      <circle cx="12" cy="10" r="3" />
-      <path d="M7 18c0-2.8 2.2-5 5-5s5 2.2 5 5" strokeLinecap="round" />
+    // Identity — solid shield
+    <svg key="3" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z" />
     </svg>,
   ];
   return icons[index] || null;
@@ -232,7 +232,7 @@ export function HowItWorks() {
           background: rgba(139,92,246,0.15); display: flex;
           align-items: center; justify-content: center; border: 1px solid rgba(139,92,246,0.3);
         }
-        .ss-bottom-logo svg { width: 20px; height: 20px; color: #8B5CF6; }
+        .ss-bottom-logo img { width: 24px; height: 24px; }
         .ss-bottom-pill {
           display: flex; align-items: center; padding: 4px;
           background: rgba(255,255,255,0.03); border-radius: 99px;
@@ -355,9 +355,13 @@ export function HowItWorks() {
 
             <div className="ss-bottom-nav">
               <div className="ss-bottom-logo">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                </svg>
+                <Image
+                  src="/zynd-logo.png"
+                  alt="ZyndAI"
+                  width={24}
+                  height={24}
+                  className="brightness-0 invert"
+                />
               </div>
               <div className="ss-bottom-pill">
                 <Link href="#">Protocol</Link>

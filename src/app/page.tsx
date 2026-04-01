@@ -12,6 +12,7 @@ import { Community } from "@/components/sections/community";
 import { FinalCTA } from "@/components/sections/final-cta";
 import { Footer } from "@/components/sections/footer";
 import { SquareTransition } from "@/components/sections/square-transition";
+import { Seamless } from "@/components/sections/seamless";
 import { AnimationProvider } from "@/components/animation-provider";
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
     <AnimationProvider>
       <Navbar />
       <Hero />
+      <Seamless />
       <Problem />
       <Vision />
       <HowItWorks />

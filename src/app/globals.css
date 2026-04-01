@@ -239,6 +239,119 @@ footer input[type="email"]:focus {
   background: #3f3f46;
 }
 
+/* ---- Seamless section ---- */
+
+.seamless {
+  background-image: linear-gradient(#000, #000 6% 95%, #0000);
+  position: relative;
+}
+
+.seamless-wrapper {
+  gap: 2.5rem;
+  flex-flow: column;
+  padding-top: 6rem;
+  padding-bottom: 8rem;
+  display: flex;
+  position: relative;
+}
+
+.seamless-top-wrap {
+  gap: 1.5rem;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+}
+
+.seamless-heading-wrap {
+  gap: 1rem;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+}
+
+.seamless-bottom-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.sticky-lottie {
+  width: 100%;
+}
+
+.sticky-lottie svg {
+  max-height: 85vh;
+  width: auto;
+  margin: 0 auto;
+}
+
+.hero-accent {
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  display: flex;
+  position: relative;
+}
+
+.accent-border-overlay {
+  pointer-events: none;
+  background-image: linear-gradient(rgba(139,92,246,0.06), rgba(139,92,246,0.06));
+  border: 1px solid rgba(139,92,246,0.7);
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  position: absolute;
+  inset: -1px;
+}
+
+.accent-background {
+  position: absolute;
+  inset: 0;
+  background: rgba(139,92,246,0.04);
+}
+
+.accent-left-top-corner,
+.accent-left-bottom-corner,
+.accent-right-top-corner,
+.accent-right-bottom-corner {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: rgba(139,92,246,0.7);
+  border-style: solid;
+}
+
+.accent-left-top-corner {
+  top: -4px; left: -4px;
+  border-width: 1px 0 0 1px;
+}
+
+.accent-right-top-corner {
+  top: -4px; right: -4px;
+  border-width: 1px 1px 0 0;
+}
+
+.accent-left-bottom-corner {
+  bottom: -4px; left: -4px;
+  border-width: 0 0 1px 1px;
+}
+
+.accent-right-bottom-corner {
+  bottom: -4px; right: -4px;
+  border-width: 0 1px 1px 0;
+}
+
+@media (max-width: 767px) {
+  .seamless-wrapper {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  .hero-accent {
+    padding: 1rem 1.5rem;
+  }
+}
+
 /* ---- Selection ---- */
 
 ::selection {
