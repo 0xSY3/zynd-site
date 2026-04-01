@@ -55,15 +55,15 @@ function MarqueeRow({ items, reverse = false }: { items: UseCase[]; reverse?: bo
         {doubled.map((item, i) => (
           <div
             key={`${item.title}-${i}`}
-            className="w-[420px] flex-shrink-0 p-8 card-sleek group"
+            className="w-[380px] flex-shrink-0 p-7 border-2 border-primary/20 group hover:border-primary/40 transition-all duration-300"
           >
-            <h4 className="font-headline font-bold text-2xl mb-4 group-hover:text-primary transition-colors">
+            <h4 className="font-headline font-bold text-xl mb-3 text-white group-hover:text-primary transition-colors">
               {item.title}
             </h4>
-            <p className="text-sm text-on-surface-variant leading-relaxed mb-6">
+            <p className="text-sm text-white/45 leading-relaxed mb-5">
               {item.description}
             </p>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/15 text-primary text-xs font-semibold border border-primary/20">
               <span className="w-1.5 h-1.5 rounded-full bg-primary" />
               {item.tagline}
             </div>
@@ -76,7 +76,7 @@ function MarqueeRow({ items, reverse = false }: { items: UseCase[]; reverse?: bo
 
 export function UseCases() {
   return (
-    <section className="py-24 bg-background overflow-hidden relative">
+    <section className="py-24 overflow-hidden relative">
       <div className="max-w-7xl mx-auto px-6 mb-16 text-center">
         <motion.div
            initial={{ opacity: 0, y: 20 }}

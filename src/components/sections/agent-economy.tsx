@@ -73,7 +73,7 @@ export function AgentEconomy() {
   }, []);
 
   return (
-    <section className="relative py-28 px-6 overflow-hidden bg-background">
+    <section className="relative py-28 px-6 overflow-hidden">
       <div className="absolute inset-x-0 top-0 h-[300px] bg-primary/5 blur-[100px] rounded-full opacity-40 pointer-events-none transform -translate-y-1/2" />
 
       <div className="relative z-10 max-w-5xl mx-auto">

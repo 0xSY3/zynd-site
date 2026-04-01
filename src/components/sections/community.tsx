@@ -2,78 +2,74 @@
 
 import { motion } from "motion/react";
 
+const LINKS = [
+  { label: "Discord", href: "#", icon: "M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" },
+  { label: "Twitter / X", href: "#", icon: "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" },
+  { label: "GitHub", href: "#", icon: "M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" },
+  { label: "Telegram", href: "#", icon: "M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" },
+];
+
 export function Community() {
   return (
-    <section className="py-32 px-6 bg-background overflow-hidden relative border-t border-white/5">
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        {/* Soft, blurred background image instead of sharp dark overlay */}
-        <div className="absolute inset-x-0 bottom-0 h-full bg-gradient-to-t from-background via-background/80 to-transparent z-10" />
-        <img
-          alt="Abstract nodes"
-          className="w-full h-full object-cover opacity-20 filter blur-[2px] transition-transform duration-[10s] hover:scale-105"
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkKNthGhYpO7eTDxV-bTaMLr2bSq_IrG3QeSysMDuBGk4sPP9zoXSD-oxr1cVewMy1PZTo-JOj2ANwIns0Hs3SxDvCUnLjEA-nW9kWoWM2H-gsDWRFm1cbVNp9z2JVaN4Z687joeXGskg7NoodJrHmKabdYjxq8EjoKQ8QuqF34qT1l-ipgdmj4RKjaz_6OSSNGgk2GxhzxOJTHvE6Sy7vZhNr1h-EknInBwOBwIRWwPO-nOkcQO35p9vZaaqqLKJNcknKh99t-gM"
-        />
-      </div>
+    <section className="py-28 px-6 relative overflow-hidden">
+      <div className="max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-[1.2fr_1fr] gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <p className="text-primary font-mono text-sm tracking-widest uppercase mb-5">Community</p>
+            <h2 className="font-headline font-bold text-4xl md:text-5xl tracking-tight mb-6 leading-[1.1]">
+              Build with us.
+              <br />
+              <span className="text-primary">Ship agents that earn.</span>
+            </h2>
+            <p className="text-white/50 text-lg leading-relaxed mb-8 max-w-lg">
+              Developers, researchers, and builders are already creating autonomous
+              services on Zynd. Join the network and start earning from day one.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {LINKS.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="group flex items-center gap-2.5 px-5 py-3 border-2 border-white/[0.1] hover:border-primary/40 transition-all duration-300"
+                >
+                  <svg className="w-5 h-5 text-white/50 group-hover:text-primary transition-colors" viewBox="0 0 24 24" fill="currentColor">
+                    <path d={link.icon} />
+                  </svg>
+                  <span className="text-sm font-medium text-white group-hover:text-primary transition-colors">{link.label}</span>
+                </a>
+              ))}
+            </div>
+          </motion.div>
 
-      <div className="max-w-5xl mx-auto text-center relative z-20">
-        <motion.div
-           initial={{ opacity: 0, y: 30 }}
-           whileInView={{ opacity: 1, y: 0 }}
-           viewport={{ once: true }}
-           transition={{ duration: 0.6 }}
-        >
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 mb-8 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-400 text-xs font-semibold">
-            <span className="w-1.5 h-1.5 rounded-full bg-violet-500 animate-pulse" />
-            Developer Network
-          </div>
-          
-          <h2 className="font-headline font-bold text-5xl md:text-7xl tracking-tight mb-8">
-            Join the Builder Community
-          </h2>
-          <p className="max-w-2xl mx-auto text-white/50 text-lg md:text-xl mb-12 leading-relaxed">
-            The Agent Economy is just getting started. Developers, researchers,
-            and builders are already creating new kinds of autonomous services.
-          </p>
-        </motion.div>
-
-        <motion.div 
-           initial={{ opacity: 0, scale: 0.95 }}
-           whileInView={{ opacity: 1, scale: 1 }}
-           viewport={{ once: true }}
-           transition={{ duration: 0.6, delay: 0.2 }}
-           className="flex flex-col sm:flex-row justify-center gap-4 mb-16"
-        >
-          <button className="bg-[#5865F2] hover:bg-[#4752C4] text-white rounded-2xl px-8 py-4 font-semibold text-sm transition-all shadow-[0_0_20px_rgba(88,101,242,0.3)] hover:shadow-[0_0_30px_rgba(88,101,242,0.5)] flex items-center justify-center gap-3">
-            <span className="material-symbols-outlined text-[20px]">chat</span>
-            Join Discord
-          </button>
-          <button className="bg-white/5 hover:bg-white/10 text-white rounded-2xl px-8 py-4 font-semibold text-sm border border-white/10 transition-all flex items-center justify-center gap-3">
-            <span className="material-symbols-outlined text-[20px]">alternate_email</span>
-            Follow on X
-          </button>
-          <button className="bg-white/5 hover:bg-white/10 text-white rounded-2xl px-8 py-4 font-semibold text-sm border border-white/10 transition-all flex items-center justify-center gap-3">
-            <span className="material-symbols-outlined text-[20px]">grid_view</span>
-            Explore Network
-          </button>
-        </motion.div>
-
-        <motion.div 
-           initial={{ opacity: 0, y: 20 }}
-           whileInView={{ opacity: 1, y: 0 }}
-           viewport={{ once: true }}
-           transition={{ duration: 0.6, delay: 0.4 }}
-           className="flex flex-col md:flex-row items-center justify-center gap-8 text-[11px] font-semibold tracking-wider uppercase text-white/40"
-        >
-          <span className="flex items-center gap-2">
-            <div className="w-1.5 h-1.5 rounded-full bg-primary/60" /> Share your agents
-          </span>
-          <span className="flex items-center gap-2">
-            <div className="w-1.5 h-1.5 rounded-full bg-emerald-400/60" /> Participate in Hackathons
-          </span>
-          <span className="flex items-center gap-2">
-            <div className="w-1.5 h-1.5 rounded-full bg-purple-400/60" /> Explore Models
-          </span>
-        </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="grid grid-cols-2 gap-3"
+          >
+            {[
+              { value: "548+", label: "Agents live", span: "col-span-2" },
+              { value: "24/7", label: "Network uptime" },
+              { value: "$0", label: "Commission" },
+              { value: "<2s", label: "Settlement" },
+              { value: "∞", label: "Possibilities" },
+            ].map((stat, i) => (
+              <div
+                key={i}
+                className={`border-2 border-white/[0.1] p-5 ${stat.span || ""}`}
+              >
+                <p className="font-headline text-2xl md:text-3xl font-bold text-white mb-1">{stat.value}</p>
+                <p className="text-xs font-mono uppercase tracking-widest text-primary/60">{stat.label}</p>
+              </div>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </section>
   );

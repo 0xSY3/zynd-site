@@ -9,10 +9,10 @@ import { UseCases } from "@/components/sections/use-cases";
 import { Stats } from "@/components/sections/stats";
 import { Roadmap } from "@/components/sections/roadmap";
 import { Community } from "@/components/sections/community";
-import { FinalCTA } from "@/components/sections/final-cta";
 import { Footer } from "@/components/sections/footer";
-import { SquareTransition } from "@/components/sections/square-transition";
 import { Seamless } from "@/components/sections/seamless";
+import { FAQ } from "@/components/sections/faq";
+import { FinalCTA } from "@/components/sections/final-cta";
 import { AnimationProvider } from "@/components/animation-provider";
 
 export default function Home() {
@@ -45,8 +45,8 @@ export default function Home() {
       <Stats />
       <Roadmap />
       <Community />
+      <FAQ />
       <FinalCTA />
-      <SquareTransition />
       <Footer />
     </AnimationProvider>
   );

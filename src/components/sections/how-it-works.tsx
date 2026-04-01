@@ -129,7 +129,7 @@ export function HowItWorks() {
   }
 
   return (
-    <section className="bg-background relative">
+    <section className="relative">
       <style>{`
         .ss { position: relative; }
         .ss-sticky {
