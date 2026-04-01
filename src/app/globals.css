@@ -239,6 +239,33 @@ footer input[type="email"]:focus {
   background: #3f3f46;
 }
 
+/* ---- Background video ---- */
+
+.bg-video-wrap {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.bg-video-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: #8B5CF6;
+  filter: blur(5px);
+  mix-blend-mode: multiply;
+  z-index: 1;
+}
+
+.bg-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0) brightness(0.6);
+  mix-blend-mode: luminosity;
+}
+
 /* ---- Seamless section ---- */
 
 .seamless {

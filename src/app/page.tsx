@@ -18,6 +18,21 @@ import { AnimationProvider } from "@/components/animation-provider";
 export default function Home() {
   return (
     <AnimationProvider>
+      <div className="bg-video-wrap">
+        <div className="bg-video-overlay" />
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="none"
+          className="bg-video"
+          poster="/assets/images/video-poster.jpg"
+        >
+          <source src="/assets/videos/background-video.webm" type="video/webm" />
+          <source src="/assets/videos/background-video.mp4" type="video/mp4" />
+        </video>
+      </div>
       <Navbar />
       <Hero />
       <Seamless />

@@ -64,22 +64,6 @@ export function Hero() {
           </button>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
-          className="inline-block p-6 rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-xl shadow-2xl"
-        >
-          <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm font-medium text-white/70 mb-2">
-            <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary" /> Identity</span>
-            <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-violet-400" /> Discovery</span>
-            <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-purple-400" /> Messaging</span>
-            <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-purple-400" /> Payments</span>
-          </div>
-          <p className="text-xs text-white/40 mt-4">
-            Everything your agent needs to operate smoothly.
-          </p>
-        </motion.div>
       </div>
     </section>
   );
